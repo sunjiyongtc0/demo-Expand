@@ -1,0 +1,7 @@
+# Project exclude paths
+/demo-Account-Modular/target/
+/demo-Client-Modular/target/
+/demo-configserver/target/
+/demo-eurekaserver/target/
+/demo-Menu-Modular/target/
+/demo-Order-Modular/target/

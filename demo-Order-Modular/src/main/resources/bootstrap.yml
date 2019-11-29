@@ -1,0 +1,17 @@
+#spring:
+#  application:
+#    name: order
+#  profiles: dev
+#  cloud:
+#    config:
+#      uri: http://localhost:8762
+#      fail-fast: true
+spring:
+  cloud:
+    config:
+      uri: http://localhost:8762
+      fail-fast: true
+  application:
+    name: order
+  profiles:
+    active: dev

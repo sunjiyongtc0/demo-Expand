@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/demo-Account-Modular" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/demo-Client-Modular" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/demo-Menu-Modular" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/demo-Order-Modular" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/demo-configserver" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/demo-eurekaserver" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/demo-pdc-Modular" charset="UTF-8" />
+  </component>
+</project>

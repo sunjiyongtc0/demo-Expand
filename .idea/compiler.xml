@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="demoMenuModular" />
+        <module name="demoeurekaserver" />
+        <module name="demoAccountModular" />
+        <module name="demoClientModular" />
+        <module name="demopdcModular" />
+        <module name="demoOrderModular" />
+        <module name="democonfigserver" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="demo-Expand" target="1.8" />
+      <module name="demoAccountModular" target="1.8" />
+      <module name="demoClientModular" target="1.8" />
+      <module name="democonfigserver" target="1.8" />
+      <module name="demoeurekaserver" target="1.8" />
+      <module name="demoMenuModular" target="1.8" />
+      <module name="demoOrderModular" target="1.8" />
+      <module name="demopdcModular" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="demo-Expand" options="-parameters" />
+      <module name="demoAccountModular" options="-parameters" />
+      <module name="demoClientModular" options="-parameters" />
+      <module name="demoMenuModular" options="-parameters" />
+      <module name="demoOrderModular" options="-parameters" />
+      <module name="democonfigserver" options="-parameters" />
+      <module name="demoeurekaserver" options="-parameters" />
+      <module name="demopdcModular" options="-parameters" />
+    </option>
+  </component>
+</project>
