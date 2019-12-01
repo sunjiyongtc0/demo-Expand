@@ -40,11 +40,11 @@ public class UserController {
     public String save(){
         System.out.println("save");
 
-        return "redirect:/user/redirect/user_manager";
+        return "redirect:/user/redirect/user_manage";
     }
     @GetMapping("/deleteAll")
     public  String deleteAll(){
         System.out.println("deleteAll");
-        return "redirect:/user/redirect/user_manager";
+        return "redirect:/user/redirect/user_manage";
     }
 }
