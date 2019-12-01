@@ -2,11 +2,14 @@ package com.sunjy.secret.controller;
 
 
 import com.sunjy.secret.entity.Account;
+import com.sunjy.secret.entity.User;
 import com.sunjy.secret.repository.AdminRepository;
 import com.sunjy.secret.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/account")
@@ -34,7 +37,16 @@ public class AccountController {
         }
         return account;
     }
+    @GetMapping("findAll/{begin}/{end}")
+    public List<User> findAll(@PathVariable("begin") int begin ,@PathVariable("end") int end){
+        List<User> lu=urepository.findAll(begin,end);
+     return  lu;
+}
 
-
+    @GetMapping("/findCount")
+    public  int count(){
+        int count=urepository.count();
+    return  count;
+    }
 
 }

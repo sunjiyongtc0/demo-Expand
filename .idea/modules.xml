@@ -9,7 +9,6 @@
       <module fileurl="file://$PROJECT_DIR$/demo-Order-Modular/demoOrderModular.iml" filepath="$PROJECT_DIR$/demo-Order-Modular/demoOrderModular.iml" />
       <module fileurl="file://$PROJECT_DIR$/demo-configserver/democonfigserver.iml" filepath="$PROJECT_DIR$/demo-configserver/democonfigserver.iml" />
       <module fileurl="file://$PROJECT_DIR$/demo-eurekaserver/demoeurekaserver.iml" filepath="$PROJECT_DIR$/demo-eurekaserver/demoeurekaserver.iml" />
-      <module fileurl="file://$PROJECT_DIR$/demo-pdc-Modular/demopdcModular.iml" filepath="$PROJECT_DIR$/demo-pdc-Modular/demopdcModular.iml" />
     </modules>
   </component>
 </project>

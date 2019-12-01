@@ -5,14 +5,24 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all">
+    <script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
 </head>
 <body class="layui-layout-body">
 <div class="layui-container" style="margin-top: 50px;width: 1000px;">
 
-    <table class="layui-hide" id="test" style="width: 300px" lay-filter="test"></table>
+    <table class="layui-hide" id="test" style="width: 900px" lay-filter="test"></table>
     <script type="text/html" id="barDemo">
+        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
     </script>
+
+    <script type="text/html" id="toolbarDemo">
+        <div class="layui-btn-container">
+            <button class="layui-btn layui-btn-sm" lay-event="add">添加用户</button>
+            <button class="layui-btn layui-btn-sm" lay-event="delete">删除全部</button>
+        </div>
+    </script>
+
     <script th:src="@{/layui/layui.js}" charset="utf-8"></script>
     <script>
         layui.use('table', function(){
@@ -22,16 +32,17 @@
                 elem: '#test'
                 ,url:'/user/findAll'
                 ,title: '用户列表'
+                ,toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
                 ,cols: [
                     [
-                        {field:'id', width:70, title: '编号', sort: true}
-                        ,{field:'username', width:100, title: '用户名'}
-                        ,{field:'nickname', width:100, title: '昵称'}
-                        ,{field:'gender', width:70, title: '性别'}
+                        {field:'id', width:60, title: '编号', sort: true}
+                        ,{field:'username', width:80, title: '用户名'}
+                        ,{field:'nickname', width:80, title: '昵称'}
+                        ,{field:'gender', width:80, title: '性别'}
                         ,{field:'telephone', width:160, title: '联系电话'}
-                        ,{field:'registerdate', width:220, title: '注册日期'}
+                        ,{field:'registerdate', width:140, title: '注册日期'}
                         ,{field:'address', width:200, title: '地址'}
-                        ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:80}
+                        ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:200}
                 ]
                 ]
                 ,page: true
@@ -45,9 +56,34 @@
                         window.location.href="/user/deleteById/"+data.id;
                         layer.close(index);
                     });
+                }else if(obj.event === 'edit'){
+                    window.location.href="/user/deleteById/"+data.id;
                 }
             });
+            //------------------------------------
+            //监听事件
+            table.on('toolbar(test)', function(obj){
+                var checkStatus = table.checkStatus(obj.config.id);
+                switch(obj.event){
+                    case 'add':
+                        $(location).attr('href',"/user/redirect/user_add");
+                        break;
+                    case 'delete':
+                        // layer.msg('删除')
+                        layer.confirm('确定要删除全部吗？', function(index){
+                            window.location.href="/user/deleteAll/";
+                            layer.close(index);
+                        });
+                        break;
+                };
+            });
+
         });
+
+
+
+
+
     </script>
 
 </div>

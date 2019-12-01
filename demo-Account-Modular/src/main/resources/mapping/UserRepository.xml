@@ -5,4 +5,11 @@
 		select * from t_account_user where username = #{param1} and password = #{param2}
 	</select>
 
+	<select id="findAll" resultType="User">
+		select * from t_account_user limit #{param1},#{param2}
+	</select>
+
+	<select id="count" resultType="int">
+		select count(*) from t_account_user;
+	</select>
 </mapper>

@@ -10,7 +10,6 @@
         <module name="demoeurekaserver" />
         <module name="demoAccountModular" />
         <module name="demoClientModular" />
-        <module name="demopdcModular" />
         <module name="demoOrderModular" />
         <module name="democonfigserver" />
       </profile>

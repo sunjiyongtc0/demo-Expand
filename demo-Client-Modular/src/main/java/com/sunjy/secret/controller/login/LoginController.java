@@ -1,10 +1,8 @@
 package com.sunjy.secret.controller.login;
 
 
-import com.alibaba.fastjson.JSONObject;
 import com.sunjy.secret.entity.Account;
-import com.sunjy.secret.entity.ResultVO;
-import com.sunjy.secret.feign.AccountFeign;
+import com.sunjy.secret.feign.login.AccountFeign;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -28,23 +26,22 @@ public class LoginController {
         return this.main;
     }
 
-//    @PostMapping("/loginto/{username}/{password}/{type}")
-//    public String loging(@PathVariable("username") String username, @PathVariable("password") String password, @PathVariable("type") String type,HttpSession session) {
     @PostMapping("/loginto")
     public String loging(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("type") String type,HttpSession session) {
         String target = null;
-        System.out.println(username);
         Account ac = af.login(username, password, type);
-        if (ac.getId() < 0) {
-            target = "login";
+        if (ac==null) {
+            target = "redirect:/expand/redirect/login";
         } else {
             switch (type){
                 case "user":
                     session.setAttribute("user",ac);
-                    target = "redirect:/expand/redirect/index";
+                    session.setAttribute("role","user");
+                    target = "redirect:/expand/redirect/main";
                     break;
                 case "admin":
                     session.setAttribute("admin",ac);
+                    session.setAttribute("role","admin");
                     target = "redirect:/expand/redirect/main";
                     break;
             }
