@@ -18,11 +18,10 @@
 
     <script type="text/html" id="toolbarDemo">
         <div class="layui-btn-container">
-            <button class="layui-btn layui-btn-sm" lay-event="add">添加用户</button>
-            <button class="layui-btn layui-btn-sm" lay-event="delete">删除全部</button>
+            <button class="layui-btn layui-btn-sm" lay-event="addUser">添加用户</button>
+            <button class="layui-btn layui-btn-sm" lay-event="addAdmin">添加管理员</button>
         </div>
     </script>
-
     <script th:src="@{/layui/layui.js}" charset="utf-8"></script>
     <script>
         layui.use('table', function(){
@@ -57,7 +56,8 @@
                         layer.close(index);
                     });
                 }else if(obj.event === 'edit'){
-                    window.location.href="/user/deleteById/"+data.id;
+                    console.log("/user/edit/"+data.id)
+                    window.location.href="/user/edit/"+data.id;
                 }
             });
             //------------------------------------
@@ -65,13 +65,13 @@
             table.on('toolbar(test)', function(obj){
                 var checkStatus = table.checkStatus(obj.config.id);
                 switch(obj.event){
-                    case 'add':
+                    case 'addUser':
                         $(location).attr('href',"/user/redirect/user_add");
                         break;
-                    case 'delete':
+                    case 'addAdmin':
                         // layer.msg('删除')
                         layer.confirm('确定要删除全部吗？', function(index){
-                            window.location.href="/user/deleteAll/";
+                            window.location.href="/user/admin_add/";
                             layer.close(index);
                         });
                         break;

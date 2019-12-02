@@ -6,4 +6,10 @@
 		select * from t_account_admin where username = #{param1} and password = #{param2}
 	</select>
 
+	<insert id="save" parameterType="Admin">
+		insert into t_account_admin(username,password) values(#{username},#{password})
+	</insert>
+	<select id="findById" resultType="Admin">
+		select * from t_account_admin where id=#{param1}
+	</select>
 </mapper>

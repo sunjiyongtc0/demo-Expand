@@ -10,4 +10,12 @@ public interface UserRepository {
     public List<User> findAll(int begin , int end);
 
     public int  count();
+
+    public void save(User u);
+
+    public  void deleteById(long l);
+
+    public User  findById(long l);
+
+    public void updateUser(User u);
 }

@@ -2,6 +2,7 @@ package com.sunjy.secret.controller;
 
 
 import com.sunjy.secret.entity.Account;
+import com.sunjy.secret.entity.Admin;
 import com.sunjy.secret.entity.User;
 import com.sunjy.secret.repository.AdminRepository;
 import com.sunjy.secret.repository.UserRepository;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -47,6 +49,29 @@ public class AccountController {
     public  int count(){
         int count=urepository.count();
     return  count;
+    }
+    @PostMapping("/saveUser")
+    public void save(@RequestBody User u){
+        u.setRegisterdate(new Date());
+        urepository.save(u);
+    }
+    @PostMapping("/saveAdmin")
+    public void save(@RequestParam Admin a){
+        arepository.save(a);
+    }
+
+    @DeleteMapping("/deletebyid/{id}")
+    public  void delete(@PathVariable("id") long id){
+        urepository.deleteById(id);
+    }
+    @GetMapping("/findById/{id}")
+    public  User findById(@PathVariable("id") long id){
+            User u=urepository.findById(id);
+        return u;
+    }
+    @PostMapping("/updateUser")
+    public  void updateUser(@RequestBody User user){
+        urepository.updateUser(user);
     }
 
 }

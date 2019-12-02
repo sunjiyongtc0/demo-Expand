@@ -1,12 +1,14 @@
 package com.sunjy.secret.controller.pdc;
 
-import com.sunjy.secret.entity.Account;
+
 import com.sunjy.secret.entity.ResultVO;
 import com.sunjy.secret.entity.User;
 import com.sunjy.secret.feign.pdc.PdcFeign;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -36,15 +38,30 @@ public class UserController {
     public  String userAdd(){
         return "user_add";
     }
-    @PostMapping("/save")
-    public String save(){
-        System.out.println("save");
 
+    @PostMapping("/save")
+    public String save(User user){
+        pf.saveUser(user);
         return "redirect:/user/redirect/user_manage";
     }
-    @GetMapping("/deleteAll")
-    public  String deleteAll(){
-        System.out.println("deleteAll");
+    @GetMapping("/deleteById/{id}")
+    public  String delete(@PathVariable("id") long id){
+        pf.deleteById(id);
         return "redirect:/user/redirect/user_manage";
     }
+    @GetMapping("/edit/{id}")
+    public  ModelAndView  edit(@PathVariable("id") long id){
+        User u=pf.findById(id);
+        ModelAndView mav= new ModelAndView();
+        mav.setViewName("user_update");
+        mav.addObject("user",u);
+        return  mav;
+    }
+    @PostMapping("/update")
+    public String updete(User user){
+        pf.updateUser(user);
+        return "redirect:/user/redirect/user_manage";
+    }
+
+
 }

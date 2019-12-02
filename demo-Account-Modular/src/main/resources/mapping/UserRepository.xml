@@ -12,4 +12,19 @@
 	<select id="count" resultType="int">
 		select count(*) from t_account_user;
 	</select>
+
+	<insert id="save" parameterType="User">
+		insert into t_account_user(username,password,nickname,gender,telephone,registerdate,address) values(#{username},#{password},#{nickname},#{gender},#{telephone},#{registerdate},#{address})
+	</insert>
+
+	<delete id="deleteById" parameterType="long">
+		delete from t_account_user where id = #{id}
+	</delete>
+	<select id="findById" resultType="User">
+		select * from t_account_user where id=#{param1}
+	</select>
+
+	<update id="updateUser"	 parameterType="User">
+		update t_account_user set username = #{username},password = #{password},nickname = #{nickname},telephone = #{telephone},address=#{address} where id = #{id}
+	</update>
 </mapper>
