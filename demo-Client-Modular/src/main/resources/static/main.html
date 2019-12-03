@@ -9,37 +9,60 @@
     <script type="text/javascript" th:src="@{/layui/layui.js}"></script>
     <script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
     <script type="text/javascript">
+        function type(id){
+            $("#type0").click(function(){ $("iframe").attr("src","/menu/menu_add/"+id);});
+        }
         $(function () {
+            $(".layui-nav-tree li").hide();
+            $("#li2").show();
+ var userId="";
+    userId=$("#userId").val();
+    //-------------------------menu设置
             $("#menu_manage").click(function(){
-                $("iframe").attr("src","/account/redirect/menu_manage");
+                $("iframe").attr("src","/menu/redirect/menu_manage");
+                $(".layui-nav-tree li").hide();
+                $("#li1").show();
             });
-            $("#menu_add").click(function(){
-                $("iframe").attr("src","/menu/prepareSave");
+            $("#type0").click(function(){ $("iframe").attr("src","/menu/redirect/menu_manage");});
+            $("#li1 dl dd a").click(function(){
+                var s=$(this).attr("id");
+                var id=s.slice(4)
+                $("iframe").attr("src","/menu/menu_add/"+id );
+            })
+    //-------------------------menu设置结束
+    //-----------------------------user设置
+            $("#user_manage").click(function(){
+                $("iframe").attr("src","/user/redirect/user_manage");
+                $(".layui-nav-tree li").hide();
+                $("#li2").show();
             });
+            $("#li2 dl dd a ").click(function(){
+                $("iframe").attr("src","/user/redirect/user_add");
+            })
+    //-------------------------user设置结束
             $("#order_handler").click(function(){
                 $("iframe").attr("src","/account/redirect/order_handler");
             });
-            $("#user_manage").click(function(){
-                $("iframe").attr("src","/user/redirect/user_manage");
-            });
-            $("#user_add").click(function(){
-                $("iframe").attr("src","/account/redirect/user_add");
+
+            $("#dd").click(function(){
+                $("iframe").attr("src","/user/edit/"+userId);
             });
         })
     </script>
 </head>
 <body class="layui-layout-body">
+<div th:if="${session.role} eq 'admin'">
+    <input type="hidden" value="0" id="userId">
+</div>
+<div th:if="${session.role} eq 'user'">
+    <input type="hidden" th:value="${session.user.id}" id="userId">
+</div>
+
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
         <div class="layui-logo">EXPAND 页面Logo</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
-            <li class="layui-nav-item"><a href="">控制台</a></li>
-            <li class="layui-nav-item"><a href="">商品管理</a></li>
-
-            <li th:if="${session.role} eq 'admin'" class="layui-nav-item">
-                <a id="user_manage" href="javascript:void(0)">用户</a>
-            </li>
             <li class="layui-nav-item">
                 <a href="javascript:;">其它系统</a>
                 <dl class="layui-nav-child">
@@ -47,6 +70,12 @@
                     <dd><a href="">消息管理</a></dd>
                     <dd><a href="">授权管理</a></dd>
                 </dl>
+            </li>
+            <li class="layui-nav-item"><a href="">控制台</a></li>
+            <li class="layui-nav-item"><a href="">订单管理</a></li>
+            <li class="layui-nav-item"><a id="menu_manage" href="javascript:void(0)">产品管理</a></li>
+            <li th:if="${session.role} eq 'admin'" class="layui-nav-item">
+                <a id="user_manage" href="javascript:void(0)">用户管理</a>
             </li>
         </ul>
         <ul class="layui-nav layui-layout-right">
@@ -56,8 +85,9 @@
                             <span th:case="'admin'" th:text="${session.admin.username}"></span>
                             <span th:case="'user'" th:text="${session.user.username}"></span>
                 </a>
-                <dl class="layui-nav-child">
-                    <dd><a href="/user/user_add">基本资料</a></dd>
+                <dl class="layui-nav-child" >
+                    <dd th:if="${session.role} eq 'user'  " ><a id="dd" href="javascript:void(0)" >基本资料</a></dd>
+                    <dd th:if="${session.role} eq 'admin' "><a href="">管理员无须更改配置</a></dd>
                     <dd><a href="">安全设置</a></dd>
                 </dl>
             </li>
@@ -68,26 +98,33 @@
     <div class="layui-side layui-bg-black">
         <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
-                <li class="layui-nav-item layui-nav-itemed">
-                    <a class="" href="javascript:;">所有商品</a>
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test" id="leftul" >
+                <li class="layui-nav-item layui-nav-itemed" id="li1">
+                    <a  id="type0" class="" href="javascript:;">所有类别</a>
+                    <dl class="layui-nav-child">
+                        <dd><a id="type1" >公路</a></dd>
+                        <dd><a id="type2" >大件</a></dd>
+                        <dd><a id="type3" >托运</a></dd>
+                        <dd><a id="type4" >仓储</a></dd>
+                        <dd><a id="type5" >空运</a></dd>
+                        <dd><a id="type6" >专线</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item" id="li2">
+                    <a href="javascript:;">添加设置</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">用户添加</a></dd>
+                        <dd><a href="javascript:;">角色管理</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="" id="li3">云市场</a>
                     <dl class="layui-nav-child">
                         <dd><a href="javascript:;">列表一</a></dd>
                         <dd><a href="javascript:;">列表二</a></dd>
-                        <dd><a href="javascript:;">列表三</a></dd>
                         <dd><a href="">超链接</a></dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item">
-                    <a href="javascript:;">解决方案</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">列表一</a></dd>
-                        <dd><a href="javascript:;">列表二</a></dd>
-                        <dd><a href="">超链接</a></dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item"><a href="">云市场</a></li>
-                <li class="layui-nav-item"><a href="">发布商品</a></li>
+                <li class="layui-nav-item" id="li4"><a href="">发布商品</a></li>
             </ul>
         </div>
     </div>
@@ -95,7 +132,7 @@
     <div class="layui-body">
         <!-- 内容主体区域 -->
    <!--     <div style="padding: 15px;">内容主体区域</div>-->
-        <iframe src="/account/redirect/menu_manage" style="width: 100%;height: 100%;border: 0px"></iframe>
+        <iframe src="/menu/redirect/menu_manage" style="width: 100%;height: 100%;border: 0px"></iframe>
     </div>
 
     <div class="layui-footer">
