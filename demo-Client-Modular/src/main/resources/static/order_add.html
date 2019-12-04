@@ -10,7 +10,7 @@
 <div class="layui-container" style="margin-top: 50px;">
 
     <div class="layui-container" style="width: 500px;height: 330px;padding-top: 60px;">
-        <form class="layui-form" action="/menu/update" method="post">
+        <form class="layui-form" action="/order/save" method="post">
             <div class="layui-form-item">
                 <label class="layui-form-label">编号：</label>
                 <div class="layui-inline">
@@ -40,8 +40,14 @@
                 <div class="layui-input-inline">
                     <select name="type.id">
                         <option th:each="type:${list}" th:text="${type.name}" th:value="${type.id}" th:if="${menu.type.id == type.id}" selected></option>
-                        <option th:each="type:${list}" th:text="${type.name}" th:value="${type.id}" th:if="${menu.type.id != type.id}" ></option>
+<!--                        <option th:each="type:${list}" th:text="${type.name}" th:value="${type.id}" th:if="${menu.type.id != type.id}" ></option>-->
                     </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">备注：</label>
+                <div class="layui-inline">
+                    <input type="text" name="remarks"  lay-verify="required" placeholder="添加备注" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
@@ -55,7 +61,6 @@
     layui.use(['form', 'element'], function(){
         var form = layui.form;
         var element = layui.element;
-
 
     });
 </script>
