@@ -42,8 +42,8 @@
 		select m.id mid,m.name,m.price,m.flavor,o.id oid,o.date,o.state,o.remarks from t_order o,t_menu m where o.mid = m.id and ( o.uid = #{param1} or 'admin'=#{param4}  )order by oid limit #{param2},#{param3}
 	</select>
 
-	<select id="countByUid" parameterType="long" resultType="int">
-		select count(*) from t_order where uid = #{uid}
+	<select id="countByUid" resultType="int">
+		select count(*) from t_order where (uid = #{param1} or 'admin'=#{param2})
 	</select>
 
 	<delete id="deleteByMid" parameterType="long">

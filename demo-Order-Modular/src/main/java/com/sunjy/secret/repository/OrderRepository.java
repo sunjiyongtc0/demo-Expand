@@ -9,7 +9,7 @@ public interface OrderRepository {
 
     public List<Order> findAllByUid(long uid, int index, int limit , String role);
     public void save(Order order);
-//    public int countByUid(long uid);
+    public int countByUid(long uid,String role);
 //    public void deleteByMid(long mid);
 //    public void deleteByUid(long uid);
 //    public List<Order> findAllByState(int state, int index, int limit);

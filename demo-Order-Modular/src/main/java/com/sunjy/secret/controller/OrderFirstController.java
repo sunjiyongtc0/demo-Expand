@@ -25,6 +25,12 @@ private OrderRepository or;
 public List<Order> findAllByUid(@PathVariable("page") int page, @PathVariable("limit") int limit, @PathVariable("uid") long uid, @PathVariable("role") String role) {
     return or.findAllByUid(uid, page, limit, role);
 }
+@GetMapping("/countByUid/{uid}/{role}")
+public int countByUid(@PathVariable("uid") long uid,@PathVariable("role") String role){
+    return or.countByUid(uid,role);
+}
+
+
 @PostMapping("/save")
 public void save(@RequestBody Order o){
     System.out.println(o.getRemarks());

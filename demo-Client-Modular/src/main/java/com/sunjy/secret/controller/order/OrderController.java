@@ -43,8 +43,8 @@ private OrderFeign of;
         uid=((Account)session.getAttribute("user")).getId();
     }
         List<Order> lo=of.findAllByUid(page,limit,uid,role);
-        System.out.println(lo.size());
-        ResultVO r=new ResultVO(0,"数据接收成功",0,lo);
+        int count=of.countByUid(uid,role);
+        ResultVO r=new ResultVO(0,"数据接收成功",count,lo);
         return r;
     }
 

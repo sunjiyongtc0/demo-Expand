@@ -19,5 +19,7 @@ public interface OrderFeign {
     @PostMapping("/order/save")
     public  void save(@RequestBody Order o);
 
+    @GetMapping("/order/countByUid/{uid}/{role}")
+    public  int countByUid(@PathVariable("uid") long uid,@PathVariable("role") String role);
 }
 
