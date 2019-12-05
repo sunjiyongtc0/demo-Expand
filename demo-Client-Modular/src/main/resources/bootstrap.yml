@@ -7,3 +7,5 @@ spring:
     name: client
   profiles:
     active: dev
+  aop:
+    auto: true
