@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all">
+    <script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+</head>
+<body class="layui-layout-body">
+<div class="layui-container" style="margin-top: 50px;width: 1000px;">
+
+    <table class="layui-hide" id="test" style="width: 900px" lay-filter="test"></table>
+<!--    <script type="text/html" id="barDemo">-->
+<!--&lt;!&ndash;        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>&ndash;&gt;-->
+<!--&lt;!&ndash;        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>&ndash;&gt;-->
+<!--    </script>-->
+
+<!--    <script type="text/html" id="toolbarDemo">-->
+<!--&lt;!&ndash;        <div class="layui-btn-container">&ndash;&gt;-->
+<!--&lt;!&ndash;            <button class="layui-btn layui-btn-sm" lay-event="addUser">添加用户</button>&ndash;&gt;-->
+<!--&lt;!&ndash;            <button class="layui-btn layui-btn-sm" lay-event="addAdmin">添加管理员</button>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--    </script>-->
+    <script th:src="@{/layui/layui.js}" charset="utf-8"></script>
+    <script>
+        layui.use('table', function(){
+            var table = layui.table;
+
+            table.render({
+                elem: '#test'
+                ,url:'/syslog/findAll'
+                ,title: '用户列表'
+                ,toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+                ,cols: [
+                    [
+                        {field:'id', width:80, title: '编号', sort: true}
+                        ,{field:'username', width:80, title: '用户名'}
+                        ,{field:'operation', width:140, title: '操作'}
+                        ,{field:'method', width:120, title: '方法'}
+                        ,{field:'ip', width:160, title: '登录ip'}
+                        ,{field:'createDate', width:160, title: '操作时间日期'}
+                        ,{field:'params', width:240, title: '参数'}
+
+                ]
+                ]
+                ,page: true
+            });
+
+
+        });
+
+
+
+
+
+    </script>
+
+</div>
+<script>
+    //二级菜单联动
+    layui.use('element', function(){
+        var element = layui.element;
+
+    });
+</script>
+</body>
+</html>

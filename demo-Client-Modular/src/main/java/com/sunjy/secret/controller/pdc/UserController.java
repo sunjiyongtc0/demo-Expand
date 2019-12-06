@@ -1,6 +1,7 @@
 package com.sunjy.secret.controller.pdc;
 
 
+import com.sunjy.secret.aspect.MyLog;
 import com.sunjy.secret.entity.ResultVO;
 import com.sunjy.secret.entity.User;
 import com.sunjy.secret.feign.pdc.PdcFeign;
@@ -34,16 +35,19 @@ public class UserController {
         ResultVO r=new ResultVO(0,"数据接收成功",count,lu);
     return r;
     }
+
     @GetMapping("/user_add")
     public  String userAdd(){
         return "user_add";
     }
 
+    @MyLog(value = "user-save")  //这里添加了AOP的自定义注解
     @PostMapping("/save")
     public String save(User user){
         pf.saveUser(user);
         return "redirect:/user/redirect/user_manage";
     }
+    @MyLog(value = "user-delete")  //这里添加了AOP的自定义注解
     @GetMapping("/deleteById/{id}")
     public  String delete(@PathVariable("id") long id){
         pf.deleteById(id);
@@ -57,6 +61,7 @@ public class UserController {
         mav.addObject("user",u);
         return  mav;
     }
+    @MyLog(value = "user-update")  //这里添加了AOP的自定义注解
     @PostMapping("/update")
     public String updete(User user){
         pf.updateUser(user);

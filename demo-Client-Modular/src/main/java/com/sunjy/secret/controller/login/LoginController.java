@@ -26,7 +26,7 @@ public class LoginController {
     public String main(){
         return this.main;
     }
-    @MyLog(value = "用户登录登录操作")  //这里添加了AOP的自定义注解
+    @MyLog(value = "account-login")  //这里添加了AOP的自定义注解
     @PostMapping("/loginto")
     public String loging(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("type") String type,HttpSession session) {
         String target = null;
@@ -49,7 +49,7 @@ public class LoginController {
         }
         return target;
     }
-
+    @MyLog(value = "account-logout")  //这里添加了AOP的自定义注解
     @GetMapping("/logout")
     public String logout(HttpSession session){
         session.invalidate();

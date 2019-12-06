@@ -37,7 +37,8 @@
                 $("#li2").show();
             });
             $("#li2 dl dd a ").click(function(){
-                $("iframe").attr("src","/user/redirect/user_add");
+                // $("iframe").attr("src","/user/redirect/user_add");
+                $("iframe").attr("src","/syslog/syslog_manage");
             })
     //-------------------------user设置结束
     // -------------------------order设置
@@ -117,10 +118,10 @@
                     </dl>
                 </li>
                 <li class="layui-nav-item" id="li2">
-                    <a href="javascript:;">添加设置</a>
+                    <a href="javascript:;">用户操作</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">用户添加</a></dd>
-                        <dd><a href="javascript:;">角色管理</a></dd>
+<!--                        <dd><a href="javascript:;">用户添加</a></dd>-->
+                        <dd><a  href="javascript:;">操作日志</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item" id="li3"><a href="" >市场</a>

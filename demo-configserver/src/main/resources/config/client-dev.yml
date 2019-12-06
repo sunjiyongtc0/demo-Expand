@@ -6,9 +6,17 @@ spring:
   thymeleaf:
     prefix: classpath:/static/
     suffix: .html
+  datasource:
+    url: jdbc:mysql://39.105.145.184:3306/Surprised?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
   instance:
     prefer-ip-address: true
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+  type-aliases-package: com.sunjy.secret.entity

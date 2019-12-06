@@ -26,7 +26,9 @@ public class LoginFilter implements Filter {
         HttpServletRequest request=(HttpServletRequest)servletRequest;
         HttpSession session = request.getSession();
         String  role=(String) session.getAttribute("role");
-        if(("".equals(role)||role==""||role==null )&& (request.getServletPath().indexOf("login")==-1)){
+        if(request.getServletPath().indexOf("logout")>0) {
+            filterChain.doFilter(servletRequest,servletResponse);
+        }else if(("".equals(role)||role==""||role==null )&& (request.getServletPath().indexOf("login")==-1) ){
             response.sendRedirect("/expand/redirect/login");
         }else{
             filterChain.doFilter(servletRequest,servletResponse);

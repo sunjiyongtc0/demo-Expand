@@ -1,5 +1,6 @@
 package com.sunjy.secret.controller.order;
 
+import com.sunjy.secret.aspect.MyLog;
 import com.sunjy.secret.entity.*;
 import com.sunjy.secret.feign.menu.MenuFeign;
 import com.sunjy.secret.feign.menu.TypeFeign;
@@ -47,7 +48,7 @@ private OrderFeign of;
         ResultVO r=new ResultVO(0,"数据接收成功",count,lo);
         return r;
     }
-
+    @MyLog(value = "order-add")  //这里添加了AOP的自定义注解
     @GetMapping("/add/{id}")
     public ModelAndView add(@PathVariable("id") int id){
         ModelAndView mav= new ModelAndView();
@@ -56,6 +57,7 @@ private OrderFeign of;
         mav.addObject("list",tf.typeFindAll());
         return mav;
     }
+    @MyLog(value = "order-save")  //这里添加了AOP的自定义注解
 @PostMapping("/save")
     public  String  save(Order o,Menu m,HttpSession session){
     o.setDate(new Date());

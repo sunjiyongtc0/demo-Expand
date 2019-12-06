@@ -1,5 +1,6 @@
 package com.sunjy.secret.controller.menu;
 
+import com.sunjy.secret.aspect.MyLog;
 import com.sunjy.secret.entity.Menu;
 import com.sunjy.secret.entity.ResultVO;
 import com.sunjy.secret.entity.Type;
@@ -46,16 +47,19 @@ public class MenuController {
         mav.addObject("list",tf.typeFindAll());
         return mav;
     }
+    @MyLog(value = "menu-delte")  //这里添加了AOP的自定义注解
     @GetMapping("/deleteById/{id}")
     public  String deleteById(@PathVariable("id") int id ){
         mf.deleteById(id);
         return "redirect:/menu/redirect/menu_manage";
     }
+    @MyLog(value = "menu-update")  //这里添加了AOP的自定义注解
     @PostMapping("/update")
-    public  String update( Menu m){
-        mf.updateMenu(m);
-    return "/menu_manage";
-}
+        public  String update( Menu m){
+            mf.updateMenu(m);
+        return "/menu_manage";
+        }
+
 @GetMapping("/menu_add/{id}")
     public ModelAndView add(@PathVariable("id") int id){
         ModelAndView mav= new ModelAndView();
@@ -68,6 +72,7 @@ public class MenuController {
         }
     return mav;
 }
+    @MyLog(value = "menu-save")  //这里添加了AOP的自定义注解
 @PostMapping("/save")
     public  String  save(Menu m){
         mf.saveMenu(m);
