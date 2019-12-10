@@ -6,7 +6,7 @@
 		<id property="id" column="oid"/>
 		<result property="date" column="date"/>
 		<result property="state" column="state"/>
-        <result property="remarks" column="remarks"/>
+		<result property="remarks" column="remarks"/>
 		<!-- 映射menu -->
 		<association property="menu" javaType="Menu">
 			<id property="id" column="mid"/>
@@ -37,7 +37,7 @@
 	<insert id="save" parameterType="Order">
 		insert into t_order(uid,mid,aid,date,state,remarks) values(#{user.id},#{menu.id},#{admin.id},#{date},0,#{remarks})
 	</insert>
-	
+
 	<select id="findAllByUid" resultMap="orderMap">
 		select m.id mid,m.name,m.price,m.flavor,o.id oid,o.date,o.state,o.remarks from t_order o,t_menu m where o.mid = m.id and ( o.uid = #{param1} or 'admin'=#{param4}  )order by oid limit #{param2},#{param3}
 	</select>

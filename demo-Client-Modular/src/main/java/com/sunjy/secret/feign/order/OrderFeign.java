@@ -1,6 +1,7 @@
 package com.sunjy.secret.feign.order;
 
 import com.sunjy.secret.entity.Order;
+import com.sunjy.secret.fallback.order.OrderFallback;
 import org.springframework.cloud.openfeign.FeignClient;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
-@FeignClient(value ="order-server")//这里的"menu"为服务配置中注册的服务名
+@FeignClient(value ="order-server",fallback = OrderFallback.class)//这里的"menu"为服务配置中注册的服务名
 public interface OrderFeign {
 
     @GetMapping("/order/findAllByUid/{page}/{limit}/{uid}/{role}")//这里的path指代除去ip端口后的url路径

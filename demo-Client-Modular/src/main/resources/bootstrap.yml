@@ -9,3 +9,6 @@ spring:
     active: dev
   aop:
     auto: true
+feign:
+  hystrix:
+    enabled: true
